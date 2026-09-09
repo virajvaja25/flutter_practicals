@@ -1,18 +1,26 @@
-import 'package:flutter_practicals/stopwatch/stopwatch.dart' show StopwatchExample;
 import 'package:flutter/material.dart';
+import 'package:flutter_practicals/login.dart';
+import 'package:flutter_practicals/stopwatch/stopwatch.dart';
+import 'package:flutter_practicals/inputcontroller/inputexcontroller.dart';
 
 void main() {
-  runApp(const StopwatchRun());
+  runApp(const StopWatchRun());
 }
 
-class StopwatchRun extends StatelessWidget {
-  const StopwatchRun({super.key});
+class StopWatchRun extends StatelessWidget {
+  const StopWatchRun({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      home: StopwatchExample(),
+      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
+      home: ControlInput(),
     );
   }
+
+
+
+
 }

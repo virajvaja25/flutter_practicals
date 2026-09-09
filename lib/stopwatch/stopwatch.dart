@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 class StopwatchExample extends StatefulWidget {
-  const StopwatchExample({super.key});
+
+  final String name;
+  final String email;
+  const StopwatchExample({super.key,required this.name,required this.email});
 
   @override
   State<StopwatchExample> createState() => StopwatchExampleState();
@@ -10,46 +13,42 @@ class StopwatchExample extends StatefulWidget {
 
 class StopwatchExampleState extends State<StopwatchExample> {
   int milliseconds = 0;
-  final laps= <int>[];
   late Timer timer;
   bool isRunning = false;
+  final laps = <int>[];
 
   void _lap(){
     setState(() {
       laps.add(milliseconds);
-      milliseconds=0;
+      milliseconds = 0;
     });
+    print(laps);
   }
   void _clear(){
     setState(() {
       laps.clear();
-      milliseconds=0;
+      milliseconds = 0;
     });
   }
 
   Widget _buildCounter(BuildContext context){
     return Container(
       color: Theme.of(context).primaryColor,
-      child: Column(mainAxisAlignment: MainAxisAlignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-          'Lap ${laps.length + 1}',
-          style: Theme.of(context)
-            .textTheme
-            .headlineSmall!
-            .copyWith(color: Colors.white),
 
-            ),
-          Text(
-            _millisToSecond(milliseconds),
-            style: Theme.of(context)
-            .textTheme
-            .bodyMedium!
-            .copyWith(color:Colors.white),
-          )
-        ]));
+          Text('Lap ${laps.length + 1}',style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: Colors.white)),
+          Text(_millisToSecond(milliseconds),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(color: Colors.white)),
+        ],
+      ),
+
+    );
   }
-
 
   @override
   void initState() {
@@ -86,17 +85,6 @@ class StopwatchExampleState extends State<StopwatchExample> {
     });
   }
 
-  // void _pauseTimer(){
-  //   setState(() {
-  //     isRunning = false;
-  //   });
-  // }
-  //
-  // void _resumeTimer() {
-  //   setState(() {
-  //     isRunning = true;
-  //   });
-  // }
 
   String _millisToSecond(millis) {
     final seconds = (millis / 1000);
@@ -107,7 +95,7 @@ class StopwatchExampleState extends State<StopwatchExample> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Stopwatch'),
+          title:  Text(widget.name),
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -132,36 +120,34 @@ class StopwatchExampleState extends State<StopwatchExample> {
                 const SizedBox(width: 20),
 
                 ElevatedButton(
-                  onPressed: _lap,
+                  onPressed:  _lap,
                   style: ButtonStyle(
                     backgroundColor: WidgetStateProperty.all<Color>(const Color.fromARGB(255, 54, 98, 244)),
                     foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
                   ),
-                  child: const Text('lap'),
+                  child: const Text('Lap'),
                 ),
                 const SizedBox(width: 20),
 
                 ElevatedButton(
                   onPressed: _clear,
                   style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all<Color>(Colors.red),
+                    backgroundColor: WidgetStateProperty.all<Color>(const Color.fromARGB(255, 244, 152, 54)),
                     foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
                   ),
-                  child: const Text('clear'),
+                  child: const Text('Clear'),
                 ),
                 const SizedBox(width: 20),
 
                 ElevatedButton(
-                  onPressed: _stopTimer ,
+                  onPressed: _stopTimer,
                   style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all<Color>(const Color.fromARGB(255, 244, 152, 54)),
+                    backgroundColor: WidgetStateProperty.all<Color>(Colors.red),
                     foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
                   ),
-                  child: const Text('stop'),
+                  child: const Text('Stop'),
                 ),
                 const SizedBox(width: 20),
-
-
               ],
             ),
           ],)
