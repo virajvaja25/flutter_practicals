@@ -5,7 +5,8 @@ class ControlInput extends StatefulWidget {
   const ControlInput({super.key});
 
   @override
-  State<ControlInput> createState() => _ControlInputState();
+  State<ControlInput> createState() => _ControlInputState()
+  ;
 }
 
 class _ControlInputState extends State<ControlInput> {

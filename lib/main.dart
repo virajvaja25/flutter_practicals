@@ -4,6 +4,10 @@ import 'package:flutter_practicals/login.dart';
 import 'package:flutter_practicals/stopwatch/stopwatch.dart';
 import 'package:flutter_practicals/inputcontroller/inputexcontroller.dart';
 import 'package:flutter_practicals/inputcontroller/radiobutton.dart';
+import 'package:flutter_practicals/controls/sliderex.dart';
+import 'package:flutter_practicals/controls/calenderex.dart';
+import 'package:flutter_practicals/controls/dropdown.dart';
+
 
 
 void main() {
@@ -19,7 +23,7 @@ class StopWatchRun extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.orange)),
-      home: ChkBoxExam(),
+      home: DropDownExample(),
     );
   }
 
